@@ -15,7 +15,7 @@ include_once( get_template_directory() . '/lib/init.php' );
 load_child_theme_textdomain( 'collie', apply_filters( 'child_theme_textdomain', get_stylesheet_directory() . '/languages', 'collie' ) );
 
 //* Child theme (do not remove)
-define( 'CHILD_THEME_NAME', __( 'collie Pro Theme', 'collie' ) );
+define( 'CHILD_THEME_NAME', __( 'The Collie Firm Theme', 'collie' ) );
 define( 'CHILD_THEME_URL', 'http://www.thecolliefirm.com' );
 define( 'CHILD_THEME_VERSION', '1.0.0' );
 

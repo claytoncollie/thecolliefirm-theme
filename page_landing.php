@@ -12,10 +12,10 @@ Template Name: Landing
 */
 
 //* Add custom body class to the head
-add_filter( 'body_class', 'enterprise_add_body_class' );
+add_filter( 'body_class', 'collie_add_body_class' );
 
-function enterprise_add_body_class( $classes ) {
-   $classes[] = 'enterprise-pro-landing';
+function collie_add_body_class( $classes ) {
+   $classes[] = 'collie-landing';
    return $classes;
    
 }
