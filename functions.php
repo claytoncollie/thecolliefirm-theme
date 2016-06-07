@@ -1,17 +1,23 @@
 <?php
+/**
+ * This file adds the Front Page to the The Collie Firm Theme.
+ *
+ * @author Clayton Collie of Sheley Marketing
+ * @package The Collie Firm Theme
+ * @subpackage Customizations
+ */
+
+
 //* Start the engine
 include_once( get_template_directory() . '/lib/init.php' );
 
-//* Setup Theme
-include_once( get_stylesheet_directory() . '/lib/theme-defaults.php' );
-
 //* Set Localization (do not remove)
-load_child_theme_textdomain( 'enterprise', apply_filters( 'child_theme_textdomain', get_stylesheet_directory() . '/languages', 'enterprise' ) );
+load_child_theme_textdomain( 'collie', apply_filters( 'child_theme_textdomain', get_stylesheet_directory() . '/languages', 'collie' ) );
 
 //* Child theme (do not remove)
-define( 'CHILD_THEME_NAME', __( 'Enterprise Pro Theme', 'enterprise' ) );
-define( 'CHILD_THEME_URL', 'http://my.studiopress.com/themes/enterprise/' );
-define( 'CHILD_THEME_VERSION', '2.1.1' );
+define( 'CHILD_THEME_NAME', __( 'collie Pro Theme', 'collie' ) );
+define( 'CHILD_THEME_URL', 'http://www.thecolliefirm.com' );
+define( 'CHILD_THEME_VERSION', '1.0.0' );
 
 //* Add HTML5 markup structure
 add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ) );
@@ -20,10 +26,10 @@ add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list'
 add_theme_support( 'genesis-responsive-viewport' );
 
 //* Enqueue Scripts
-add_action( 'wp_enqueue_scripts', 'enterprise_load_scripts' );
-function enterprise_load_scripts() {
+add_action( 'wp_enqueue_scripts', 'collie_load_scripts' );
+function collie_load_scripts() {
 
-	wp_enqueue_script( 'enterprise-responsive-menu', get_bloginfo( 'stylesheet_directory' ) . '/js/responsive-menu.js', array( 'jquery' ), '1.0.0' );
+	wp_enqueue_script( 'collie-responsive-menu', get_bloginfo( 'stylesheet_directory' ) . '/js/responsive-menu.js', array( 'jquery' ), '1.0.0' );
 	
 	wp_enqueue_style( 'dashicons' );
 
@@ -43,15 +49,6 @@ add_theme_support( 'custom-header', array(
 	'width'           => 320,
 ) );
 
-//* Add support for additional color style options
-add_theme_support( 'genesis-style-selector', array(
-	'enterprise-pro-black'	=> __( 'Enterprise Pro Black', 'enterprise' ),
-	'enterprise-pro-green'	=> __( 'Enterprise Pro Green', 'enterprise' ),
-	'enterprise-pro-orange'	=> __( 'Enterprise Pro Orange', 'enterprise' ),
-	'enterprise-pro-red'    => __( 'Enterprise Pro Red', 'enterprise' ),
-	'enterprise-pro-teal'	=> __( 'Enterprise Pro Teal', 'enterprise' ),
-) );
-
 //* Add support for structural wraps
 add_theme_support( 'genesis-structural-wraps', array(
 	'header',
@@ -67,23 +64,14 @@ remove_action( 'genesis_after_header', 'genesis_do_subnav' );
 add_action( 'genesis_footer', 'genesis_do_subnav', 7 );
 
 //* Reduce the secondary navigation menu to one level depth
-add_filter( 'wp_nav_menu_args', 'enterprise_secondary_menu_args' );
-function enterprise_secondary_menu_args( $args ){
+add_filter( 'wp_nav_menu_args', 'collie_secondary_menu_args' );
+function collie_secondary_menu_args( $args ){
 
 	if( 'secondary' != $args['theme_location'] )
 	return $args;
 
 	$args['depth'] = 1;
 	return $args;
-
-}
-
-//* Remove comment form allowed tags
-add_filter( 'comment_form_defaults', 'enterprise_remove_comment_form_allowed_tags' );
-function enterprise_remove_comment_form_allowed_tags( $defaults ) {
-	
-	$defaults['comment_notes_after'] = '';
-	return $defaults;
 
 }
 
@@ -100,11 +88,11 @@ add_action( 'genesis_after_entry', 'genesis_after_entry_widget_area', 5 );
 //* Register widget areas
 genesis_register_sidebar( array(
 	'id'          => 'home-top',
-	'name'        => __( 'Home - Top', 'enterprise' ),
-	'description' => __( 'This is the top section of the homepage.', 'enterprise' ),
+	'name'        => __( 'Home - Top', 'collie' ),
+	'description' => __( 'This is the top section of the homepage.', 'collie' ),
 ) );
 genesis_register_sidebar( array(
 	'id'          => 'home-bottom',
-	'name'        => __( 'Home - Bottom', 'enterprise' ),
-	'description' => __( 'This is the bottom section of the homepage.', 'enterprise' ),
+	'name'        => __( 'Home - Bottom', 'collie' ),
+	'description' => __( 'This is the bottom section of the homepage.', 'collie' ),
 ) );

@@ -1,9 +1,9 @@
 <?php
 /**
- * This file adds the Landing template to the Enterprise Pro Theme.
+ * This file adds the Landing Page to the The Collie Firm Theme.
  *
- * @author StudioPress
- * @package Enterprise Pro
+ * @author Clayton Collie of Sheley Marketing
+ * @package The Collie Firm Theme
  * @subpackage Customizations
  */
 
