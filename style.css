@@ -1650,11 +1650,7 @@ Footer Widgets
 }
 
 .footer-widgets li {
-	border-bottom: 0;
-	margin-bottom: 10px;
-	padding-bottom: 10px;
-    list-style-type: square;
-    margin-left: 20px;
+	border-bottom-color: #97a465;
 }
 
 .footer-widgets a {
@@ -1760,7 +1756,11 @@ Media Queries
 	}
 
 	.content {
-		width: 620px;
+		width: 580px;
+	}
+
+	.sidebar {
+		width: 360px;
 	}
 	
 	.site-header .widget-area {
@@ -1773,15 +1773,8 @@ Media Queries
 		width: 400px;
 	}
 
-	.footer-widgets-1,
-	.footer-widgets-2,
-	.footer-widgets-3,
-	.sidebar-primary {
-		width: 300px;
-	}
-
-	.footer-widgets-1 {
-		margin-right: 30px;
+	.genesis-nav-menu a {
+	    padding: 20px 12px;
 	}
 
 }
@@ -1790,6 +1783,7 @@ Media Queries
 
 	.wrap {
 		max-width: 768px;
+		padding: 0 2%;
 	}
 	
 	.home-top .wrap {
@@ -1871,7 +1865,7 @@ Media Queries
 
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 800px) {
 
 	.page-template-page-attorney .content-sidebar-wrap, .page-template-page-contact .content-sidebar-wrap {display:table;}
 	.page-template-page-attorney .content, .page-template-page-contact .content {display:table-footer-group; float: none;}
@@ -2010,9 +2004,23 @@ Media Queries
 		padding-left: 25px;
 	}
 
+	.sidebar .widget-title {
+    	margin: -20px -40px 20px;
+    }
+
+
 	.entry,
 	.sidebar .widget {
 		padding: 20px;
+	}
+
+	.entry-header {
+	    margin: -20px -20px 20px;
+	    padding: 20px;
+	}
+
+	.entry-title {
+		font-size: 26px;
 	}
 
 	.footer-widgets-3 .widget {
