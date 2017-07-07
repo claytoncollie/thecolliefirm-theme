@@ -13,9 +13,7 @@
 // Set or unset columns
 add_filter( 'manage_page_posts_columns', 'sm_set_custom_edit_page_columns' );
 function sm_set_custom_edit_page_columns($columns) {
-	
-    $columns['featured_image'] = __( 'Image', 'sm' );
-
+    $columns['featured_image'] = __( 'Featured Image', 'collie' );
     return $columns;
 }
 
@@ -29,9 +27,10 @@ function sm_custom_page_column( $column, $post_id ) {
 
         case 'featured_image' :
 		
-            echo get_the_post_thumbnail( $post_id , array( 300, 75 ) );
+            if( has_post_thumbnail($post_id) ) {
+                echo get_the_post_thumbnail( $post_id , 'thumbnail' );
+            }
             
-            break;
-			
+        break;			
     }
 }

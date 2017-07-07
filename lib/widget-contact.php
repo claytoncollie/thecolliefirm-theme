@@ -10,7 +10,11 @@
  * @license GPL2-0+
  */
 
-add_action( 'widgets_init', create_function( '', "register_widget('Collie_Contact_Widget');" ) );
+add_action( 'widgets_init', 'collie_register_widget_contact');
+function collie_register_widget_contact() {
+    register_widget('Collie_Contact_Widget');
+}
+
 class Collie_Contact_Widget extends WP_Widget {
 
     /**
@@ -49,7 +53,7 @@ class Collie_Contact_Widget extends WP_Widget {
         // widget basics
         $widget_ops = array(
             'classname'   => $widget_slug,
-            'description' => 'Displays the contact information with underlying schema markup.'
+            'description' => esc_html__('Displays the contact information with underlying schema markup.', 'collie')
         );
 
         // widget controls
@@ -59,7 +63,7 @@ class Collie_Contact_Widget extends WP_Widget {
         );
 
         // load widget
-        parent::__construct( $widget_slug, 'Collie Firm - Contact Information', $widget_ops, $control_ops );
+        parent::__construct( $widget_slug, esc_html__('Collie Firm - Contact Information', 'collie'), $widget_ops, $control_ops );
 
     }
 
@@ -168,7 +172,7 @@ class Collie_Contact_Widget extends WP_Widget {
      */
     function widget( $args, $instance ) {
 
-        wp_enqueue_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css' );
+        
 
         extract( $args );
 
@@ -187,7 +191,7 @@ class Collie_Contact_Widget extends WP_Widget {
         $zip            = $instance['zip'];
         $phone          = $instance['phone'];
         $fax            = $instance['fax'];
-        $email          = antispambot($instance['email']);
+        $email          = $instance['email'];
 
         if ( $title ) {
             echo $before_title . $title . $after_title;
@@ -196,11 +200,15 @@ class Collie_Contact_Widget extends WP_Widget {
         echo '<div itemscope="" itemtype="http://schema.org/Attorney">';
 
             if ( $company ) {
-                echo '<div itemprop="legalName"><i class="fa fa-building" aria-hidden="true"></i>' . $company . '</div>';
+                printf('<div itemprop="legalName"><i class="fa fa-building" aria-hidden="true"></i>%s</div>',
+                    esc_html($company)
+                );
             }
 
             if ( $name ) {
-                echo '<div itemprop="founder"><i class="fa fa-user" aria-hidden="true"></i>' . $name . '</div>';
+                printf('<div itemprop="founder"><i class="fa fa-user" aria-hidden="true"></i>%s</div>',
+                    esc_html($name)
+                );
             }
 
             if($address_one || $address_two || $city || $state || $zip) {
@@ -208,18 +216,22 @@ class Collie_Contact_Widget extends WP_Widget {
                 echo '<div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">';
 
                     if ( $address_one && $address_two ) {
-                        echo '<div itemprop="streetAddress"><i class="fa fa-map-marker" aria-hidden="true"></i>' . $address_one . ', '.$address_two.'</div>';
+                        printf('<div itemprop="streetAddress"><i class="fa fa-map-marker" aria-hidden="true"></i>%s, %s</div>',
+                            esc_html($address_one),
+                            esc_html($address_two)
+                        );
                     }elseif( $address_one ) {
-                        echo '<div itemprop="streetAddress"><i class="fa fa-map-marker" aria-hidden="true"></i>' . $address_one . '</div>';
+                        printf('<div itemprop="streetAddress"><i class="fa fa-map-marker" aria-hidden="true"></i>%s</div>',
+                            esc_html($address_one)
+                        );
                     }
 
                     if ( $city && $state && $zip ) {
-                        echo '<div>';
-                            echo '<i class="fa fa-globe" aria-hidden="true"></i>';
-                            echo '<span itemprop="addressLocality">' . $city . '</span>';
-                            echo ',<span itemprop="addressRegion">' . $state . '</span>';
-                            echo '<span itemprop="postalCode"> ' . $zip . '</span>';
-                        echo '</div>';
+                        printf('<div><i class="fa fa-globe" aria-hidden="true"></i><span itemprop="addressLocality">%s</span>,<span itemprop="addressRegion">%s</span><span itemprop="postalCode">%s</span></div>',
+                            esc_html($city),
+                            esc_html($state),
+                            esc_html($zip)
+                        );
                     }
 
                 echo '</div>';
@@ -227,15 +239,22 @@ class Collie_Contact_Widget extends WP_Widget {
             }
 
             if ( $phone ) {
-                echo '<div itemprop="telephone"><i class="fa fa-phone" aria-hidden="true"></i>' . $phone . '</div>';
+                printf('<div itemprop="telephone"><i class="fa fa-phone" aria-hidden="true"></i>%s</div>', 
+                    esc_html($phone) 
+                );
             }
 
             if ( $fax ) {
-                echo '<div itemprop="faxNumber"><i class="fa fa-fax" aria-hidden="true"></i>' . $fax . '</div>';
+                printf('<div itemprop="faxNumber"><i class="fa fa-fax" aria-hidden="true"></i>%s</div>', 
+                    esc_html($fax) 
+                );
             }
 
             if ( $email ) {
-                echo '<div ><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="mailto:' . $email . '"><span itemprop="email">' . $email . '</span></a></div>';
+               printf('<div ><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="mailto:%s"><span itemprop="email">%s</span></a></div>',
+                    antispambot($email),
+                    antispambot($email)
+                );
             }
 
         echo '</div>';

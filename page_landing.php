@@ -1,23 +1,16 @@
 <?php
 /**
- * This file adds the Landing Page to the The Collie Firm Theme.
+ * Template Name: Landing
  *
  * @author Clayton Collie of Sheley Marketing
  * @package The Collie Firm Theme
- * @subpackage Customizations
  */
-
-/*
-Template Name: Landing
-*/
 
 //* Add custom body class to the head
 add_filter( 'body_class', 'collie_add_body_class' );
-
 function collie_add_body_class( $classes ) {
-   $classes[] = 'collie-landing';
+   $classes[] = 'landing';
    return $classes;
-   
 }
 
 //* Force full width content layout
