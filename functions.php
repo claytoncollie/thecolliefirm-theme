@@ -16,7 +16,7 @@ load_child_theme_textdomain( 'collie', apply_filters( 'child_theme_textdomain', 
 //* Child theme (do not remove)
 define( 'CHILD_THEME_NAME', __( 'The Collie Firm Theme', 'collie' ) );
 define( 'CHILD_THEME_URL', 'http://www.thecolliefirm.com' );
-define( 'CHILD_THEME_VERSION', '1.1.1' );
+define( 'CHILD_THEME_VERSION', '1.1.2' );
 
 //* Add HTML5 markup structure
 add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ) );
